@@ -8,8 +8,14 @@ const app = express();
 const PORT = 3000;
 const SECRET_KEY = "soanchirhi_secret_key";
 
-// Middleware
-app.use(cors());
+// CORS configuration
+const corsOptions = {
+  origin: 'https://soanchiri.org', // Allow your frontend domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));  // Apply the CORS options to your Express app
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
