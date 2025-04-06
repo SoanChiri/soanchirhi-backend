@@ -80,6 +80,11 @@ app.post("/login", (req, res) => {
     expiresIn: "2h",
   });
 
+  // Ensure that the user has a level
+  if (!user.level) {
+    return res.status(400).json({ success: false, message: "User has no level assigned." });
+  }
+
   res.json({ success: true, token, role, level: user.level || null });
 });
 
