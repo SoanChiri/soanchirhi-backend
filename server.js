@@ -86,8 +86,8 @@ app.post("/login", (req, res) => {
     expiresIn: "2h",
   });
 
-  // Ensure that the user has a level
-  if (!user.level) {
+  // Ensure that the user has a level for students
+  if (!user.level && user.role === "student") {
     return res.status(400).json({ success: false, message: "User has no level assigned." });
   }
 
@@ -105,11 +105,14 @@ app.get("/resources/:level", authenticateToken, (req, res) => {
   }
 });
 
-// All resources (for teachers)
+// All resources (for teachers and admins)
 app.get("/all-resources", authenticateToken, (req, res) => {
+  // Ensure that only teachers and admins can access this route
   if (req.user.role !== "teacher" && req.user.role !== "admin") {
     return res.status(403).json({ message: "Access denied. Only teachers and admins can access all resources." });
   }
+  
+  // Return all resources (both student and teacher)
   res.json(resources);
 });
 
