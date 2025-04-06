@@ -68,8 +68,6 @@ const authenticateToken = (req, res, next) => {
 
 // Login Route
 app.post("/login", (req, res) => {
-  console.log("Login Attempt:", req.body.email, req.body.password);
-
   const { email, password } = req.body;
 
   const user =
