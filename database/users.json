@@ -1058,6 +1058,7 @@
       "resetToken": null
     }
   ],
+ {
   "teachers": [
     {
       "id": 1,
@@ -1066,7 +1067,8 @@
       "password": "soan2025",
       "role": "teacher",
       "firstLogin": true,
-      "resetToken": null
+      "resetToken": null,
+      "level": "Level 0"  // Add level here
     }
   ],
   "admin": [
@@ -1077,7 +1079,8 @@
       "password": "admi2025",
       "role": "admin",
       "firstLogin": true,
-      "resetToken": null
+      "resetToken": null,
+      "level": "Level 0"  // Add level here
     }
   ]
 }
