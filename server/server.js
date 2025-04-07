@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
@@ -10,8 +9,13 @@ const app = express();
 const PORT = 3000;
 const SECRET_KEY = "soanchirhi_secret_key";
 
-// Middleware
-app.use(cors());
+// ✅ Allow CORS from frontend
+app.use(cors({
+  origin: "https://soanchiri.org",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
@@ -58,7 +62,7 @@ app.post("/login", (req, res) => {
 
   const role = user.role || "student";
   const token = jwt.sign({ email: user.email, role, level: user.level || null }, SECRET_KEY, { expiresIn: "2h" });
-  res.json({ success: true, token, role, level: user.level || null });
+  res.json({ success: true, token, role, level: user.level || null, firstLogin: user.firstLogin || false });
 });
 
 // 🔹 GET: Student resources by level
@@ -225,8 +229,7 @@ app.post("/update-resources", (req, res) => {
   }
 });
 
-
-// Start Server
+// ✅ Start Server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
