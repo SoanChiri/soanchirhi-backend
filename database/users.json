@@ -9,7 +9,7 @@
       "level": "Level 4",
       "password": "abhay2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -21,7 +21,7 @@
       "level": "Level 3",
       "password": "adab2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -33,7 +33,7 @@
       "level": "Level 3",
       "password": "agam2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -45,7 +45,7 @@
       "level": "Level 2",
       "password": "agamv2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -57,7 +57,7 @@
       "level": "Level 3",
       "password": "ajooni2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -69,7 +69,7 @@
       "level": "Level 1",
       "password": "aman2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -81,7 +81,7 @@
       "level": "Level 1",
       "password": "amaba2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -93,7 +93,7 @@
       "level": "Withdrawn Students, Level 4",
       "password": "amra2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -105,7 +105,7 @@
       "level": "Level 4",
       "password": "amre2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -117,7 +117,7 @@
       "level": "Level 4",
       "password": "amree2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -129,7 +129,7 @@
       "level": "Level 1",
       "password": "anan2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -141,7 +141,7 @@
       "level": "SACE",
       "password": "anga2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -153,7 +153,7 @@
       "level": "Level 4",
       "password": "ange2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -165,7 +165,7 @@
       "level": "Level 3",
       "password": "anha2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -177,7 +177,7 @@
       "level": "Level 1",
       "password": "arjo2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -189,7 +189,7 @@
       "level": "Level 4",
       "password": "asee2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -201,7 +201,7 @@
       "level": "Level 3",
       "password": "avlee2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -213,7 +213,7 @@
       "level": "Level 3",
       "password": "avne2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -225,7 +225,7 @@
       "level": "Level 1",
       "password": "bina2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -237,7 +237,7 @@
       "level": "Level 4",
       "password": "brah2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -249,7 +249,7 @@
       "level": "Level 2",
       "password": "dars2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -261,7 +261,7 @@
       "level": "Level 2",
       "password": "dhru",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -273,7 +273,7 @@
       "level": "Level 4",
       "password": "dilj2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
 
@@ -286,7 +286,7 @@
       "level": "Level 3",
       "password": "ekam2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -298,7 +298,7 @@
       "level": "Level 1",
       "password": "eshn2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -310,7 +310,7 @@
       "level": "Level 2",
       "password": "eshr2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -322,7 +322,7 @@
       "level": "Level 2",
       "password": "furm2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -334,7 +334,7 @@
       "level": "Level 4",
       "password": "gura2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -346,7 +346,7 @@
       "level": "Level 1",
       "password": "gurb2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -358,7 +358,7 @@
       "level": "Level 2",
       "password": "gurf2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -370,7 +370,7 @@
       "level": "Level 3",
       "password": "gurj2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -382,7 +382,7 @@
       "level": "Level 2",
       "password": "gurm2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -394,7 +394,7 @@
       "level": "Level 1",
       "password": "123456",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -406,7 +406,7 @@
       "level": "Level 3",
       "password": "Gurp2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -418,7 +418,7 @@
       "level": "Level 1",
       "password": "gurs2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -430,7 +430,7 @@
       "level": "Level 3",
       "password": "harf2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -442,7 +442,7 @@
       "level": "Level 3",
       "password": "Harf2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -454,7 +454,7 @@
       "level": "Level 1",
       "password": "Harj2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -466,7 +466,7 @@
       "level": "Level 2",
       "password": "harl2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -478,7 +478,7 @@
       "level": "Level 2",
       "password": "Hars2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -490,7 +490,7 @@
       "level": "Level 3",
       "password": "taj2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -502,7 +502,7 @@
       "level": "Level 3",
       "password": "harv2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -514,7 +514,7 @@
       "level": "Level 3",
       "password": "jagm2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -526,7 +526,7 @@
       "level": "Level 4",
       "password": "Japj2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -538,7 +538,7 @@
       "level": "Level 4",
       "password": "japj2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -550,7 +550,7 @@
       "level": "Level 1",
       "password": "jasm2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -562,7 +562,7 @@
       "level": "Level 4",
       "password": "123456",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -574,7 +574,7 @@
       "level": "Level 4",
       "password": "karm2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -586,7 +586,7 @@
       "level": "Level 1",
       "password": "kavl2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -598,7 +598,7 @@
       "level": "Level 1",
       "password": "mans2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -610,7 +610,7 @@
       "level": "Level 1",
       "password": "mant2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -622,7 +622,7 @@
       "level": "Level 1",
       "password": "manv2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -634,7 +634,7 @@
       "level": "Level 4",
       "password": "meha2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -646,7 +646,7 @@
       "level": "Level 1",
       "password": "meha2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -658,7 +658,7 @@
       "level": "Level 4",
       "password": "naun2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -670,7 +670,7 @@
       "level": "Level 4",
       "password": "navr2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -682,7 +682,7 @@
       "level": "Level 1",
       "password": "nirv2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -694,7 +694,7 @@
       "level": "Level 1",
       "password": "niya2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -706,7 +706,7 @@
       "level": "Level 1",
       "password": "parn2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -718,7 +718,7 @@
       "level": "Level 3",
       "password": "prab2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -730,7 +730,7 @@
       "level": "Level 3",
       "password": "Prab2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -742,7 +742,7 @@
       "level": "Level 4",
       "password": "simr2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -754,7 +754,7 @@
       "level": "Level 4",
       "password": "veer2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -766,7 +766,7 @@
       "level": "Level 3",
       "password": "leen2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -778,7 +778,7 @@
       "level": "Level 4",
       "password": "prag2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -790,7 +790,7 @@
       "level": "SACE",
       "password": "prav2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -802,7 +802,7 @@
       "level": "Level 1",
       "password": "omee2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -814,7 +814,7 @@
       "level": "Level 4",
       "password": "rabj2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -826,7 +826,7 @@
       "level": "Level 4",
       "password": "rajv2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -838,7 +838,7 @@
       "level": "Level 2",
       "password": "Rajv2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -850,7 +850,7 @@
       "level": "Level 1",
       "password": "reya2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -862,7 +862,7 @@
       "level": "Level 2",
       "password": "rick2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -874,7 +874,7 @@
       "level": "Level 4",
       "password": "rinz2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -886,7 +886,7 @@
       "level": "SACE",
       "password": "sahi2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -898,7 +898,7 @@
       "level": "Level 1",
       "password": "Sahi2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -910,7 +910,7 @@
       "level": "Level 3",
       "password": "savr2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -922,7 +922,7 @@
       "level": "Level 1",
       "password": "Savr2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -934,7 +934,7 @@
       "level": "Level 3",
       "password": "seha2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -946,7 +946,7 @@
       "level": "Level 1",
       "password": "Seha2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -958,7 +958,7 @@
       "level": "Level 4",
       "password": "sehb2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -970,7 +970,7 @@
       "level": "Level 1",
       "password": "shaa2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -982,7 +982,7 @@
       "level": "Level 2",
       "password": "sifa2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -994,7 +994,7 @@
       "level": "Level 4",
       "password": "snno2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -1006,7 +1006,7 @@
       "level": "Level 1",
       "password": "ltan2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -1018,7 +1018,7 @@
       "level": "Level 1",
       "password": "tegh2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -1030,7 +1030,7 @@
       "level": "Level 1",
       "password": "udey2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -1042,7 +1042,7 @@
       "level": "Level 4",
       "password": "vatt2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     },
     {
@@ -1054,7 +1054,7 @@
       "level": "Level 1",
       "password": "zora2025",
       "role": "student",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null
     }
   ],
@@ -1066,7 +1066,7 @@
       "email": "teachers@soanchiri.org",
       "password": "soan2025",
       "role": "teacher",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null,
       "level": "Level 0"  // Add level here
     }
@@ -1078,7 +1078,7 @@
       "email": "info@soanchiri.org",
       "password": "admi2025",
       "role": "admin",
-      "firstLogin": true,
+      "firstLogin": false,
       "resetToken": null,
       "level": "Level 0"  // Add level here
     }
