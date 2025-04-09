@@ -161,6 +161,27 @@ app.post("/forgot-password", authenticateToken, (req, res) => {
   }
 });
 
+// 🔄 Update all resource links from Admin Panel
+app.post("/update-resources", (req, res) => {
+  const updates = req.body;
+
+  try {
+    const resources = readJsonFile("./database/resources.json");
+
+    for (let key in updates) {
+      // Ensure we store each as { folderUrl: "..." }
+      resources[key] = { folderUrl: updates[key] };
+    }
+
+    fs.writeFileSync("./database/resources.json", JSON.stringify(resources, null, 2));
+    res.json({ success: true, message: "✅ Resource links updated successfully." });
+  } catch (error) {
+    console.error("Error updating resource links:", error);
+    res.status(500).json({ success: false, message: "❌ Failed to update resource links." });
+  }
+});
+
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
