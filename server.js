@@ -30,7 +30,7 @@ const readJsonFile = (filePath) => {
 };
 
 let users = readJsonFile("./database/users.json");
-const resources = readJsonFile("./database/resources.json");
+let resources = readJsonFile("./database/resources.json");
 const classes = readJsonFile("./database/classes.json");
 
 // ✅ Load Admission Link from JSON
@@ -109,7 +109,7 @@ app.get("/all-resources", authenticateToken, (req, res) => {
   if (req.user.role !== "teacher" && req.user.role !== "admin") {
     return res.status(403).json({ message: "Access denied. Only teachers and admins can access all resources." });
   }
-  
+
   // Return all resources (both student and teacher)
   res.json(resources);
 });
@@ -161,26 +161,30 @@ app.post("/forgot-password", authenticateToken, (req, res) => {
   }
 });
 
-// 🔄 Update all resource links from Admin Panel
+// 🔄 Update all resource links from Admin Panel (corrected format)
 app.post("/update-resources", (req, res) => {
   const updates = req.body;
 
   try {
-    const resources = readJsonFile("./database/resources.json");
+    const currentResources = readJsonFile("./database/resources.json");
 
     for (let key in updates) {
-      // Ensure we store each as { folderUrl: "..." }
-      resources[key] = { folderUrl: updates[key] };
+      currentResources[key] = [
+        {
+          title: key === "teachers" ? "General Teaching Resources" : "Homework",
+          url: updates[key]
+        }
+      ];
     }
 
-    fs.writeFileSync("./database/resources.json", JSON.stringify(resources, null, 2));
+    fs.writeFileSync("./database/resources.json", JSON.stringify(currentResources, null, 2));
+    resources = currentResources;
     res.json({ success: true, message: "✅ Resource links updated successfully." });
   } catch (error) {
     console.error("Error updating resource links:", error);
     res.status(500).json({ success: false, message: "❌ Failed to update resource links." });
   }
 });
-
 
 // Start Server
 app.listen(PORT, () => {
