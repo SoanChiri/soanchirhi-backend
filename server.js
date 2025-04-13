@@ -45,6 +45,36 @@ const getAdmissionLink = () => {
 
 // 🔹 Route to Get Admission Link
 app.get("/admission-link", (req, res) => {
+  // 🔹 Route to Get Admission Link
+app.get("/admission-link", (req, res) => {
+  const link = getAdmissionLink();
+  if (link) {
+    res.json({ admissionLink: link });
+  } else {
+    res.status(404).json({ message: "Admission link not found." });
+  }
+});
+
+// 🔄 Route to Update Admission Link (Admin Only)
+app.post("/update-admission-link", authenticateToken, (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: "Access denied. Only admins can update the admission link." });
+  }
+
+  const { admissionLink } = req.body;
+  if (!admissionLink) {
+    return res.status(400).json({ message: "Admission link is required." });
+  }
+
+  try {
+    fs.writeFileSync('./database/admission.json', JSON.stringify({ admissionLink }, null, 2));
+    res.json({ success: true, message: "Admission link updated successfully." });
+  } catch (error) {
+    console.error("Error updating admission link:", error);
+    res.status(500).json({ success: false, message: "Failed to update admission link." });
+  }
+});
+
   const link = getAdmissionLink();
   if (link) {
     res.json({ admissionLink: link });
