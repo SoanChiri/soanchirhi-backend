@@ -212,12 +212,13 @@ app.get("/resources/teacher", authenticateToken, (req, res) => {
 
   const teacherResource = resources.teachers;
 
-  if (teacherResource) {
+  if (Array.isArray(teacherResource) && teacherResource.length > 0) {
     res.json(teacherResource);
   } else {
-    res.status(404).json({ message: "Teacher resource not found." });
+    res.status(404).json({ message: "Teacher resources not found." });
   }
 });
+
 
 // 🔄 Route to Update Class Info (Admin Only)
 app.post("/update-classes", authenticateToken, (req, res) => {
