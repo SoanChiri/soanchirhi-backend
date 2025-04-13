@@ -102,17 +102,30 @@ app.get("/resources/:level", authenticateToken, (req, res) => {
     res.status(404).json({ message: "No resources found for this level." });
   }
 });
-
-// All resources (for teachers and admins)
+// ✅ All resources (for teachers and admins)
 app.get("/all-resources", authenticateToken, (req, res) => {
-  // Ensure that only teachers and admins can access this route
   if (req.user.role !== "teacher" && req.user.role !== "admin") {
     return res.status(403).json({ message: "Access denied. Only teachers and admins can access all resources." });
   }
 
-  // Return all resources (both student and teacher)
   res.json(resources);
 });
+
+// ✅ Route for Teacher Resources Only (matches frontend expectation)
+app.get("/resources/teacher", authenticateToken, (req, res) => {
+  if (req.user.role !== "teacher" && req.user.role !== "admin") {
+    return res.status(403).json({ message: "Access denied. Only teachers and admins can access this." });
+  }
+
+  const teacherResource = resources.teachers;
+
+  if (teacherResource) {
+    res.json(teacherResource);
+  } else {
+    res.status(404).json({ message: "Teacher resource not found." });
+  }
+});
+
 
 // Classes
 app.get("/classes", authenticateToken, (req, res) => {
