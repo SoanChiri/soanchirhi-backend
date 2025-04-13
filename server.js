@@ -32,20 +32,18 @@ const readJsonFile = (filePath) => {
 let users = readJsonFile("./database/users.json");
 let resources = readJsonFile("./database/resources.json");
 const classes = readJsonFile("./database/classes.json");
-
 // ✅ Load Admission Link from JSON
 const getAdmissionLink = () => {
   try {
     const admission = JSON.parse(fs.readFileSync("./database/admission.json", "utf-8"));
     return admission.admissionLink || null;
   } catch (err) {
+    console.error("Error loading admission link:", err);
     return null;
   }
 };
 
 // 🔹 Route to Get Admission Link
-app.get("/admission-link", (req, res) => {
-  // 🔹 Route to Get Admission Link
 app.get("/admission-link", (req, res) => {
   const link = getAdmissionLink();
   if (link) {
@@ -74,27 +72,6 @@ app.post("/update-admission-link", authenticateToken, (req, res) => {
     res.status(500).json({ success: false, message: "Failed to update admission link." });
   }
 });
-
-  const link = getAdmissionLink();
-  if (link) {
-    res.json({ admissionLink: link });
-  } else {
-    res.status(404).json({ message: "Admission link not found." });
-  }
-});
-
-// JWT Token Verification Middleware
-const authenticateToken = (req, res, next) => {
-  const token = req.headers['authorization']?.split(' ')[1]; // Bearer <token>
-
-  if (!token) return res.status(401).json({ message: "Access denied. No token provided." });
-
-  jwt.verify(token, SECRET_KEY, (err, user) => {
-    if (err) return res.status(403).json({ message: "Invalid token." });
-    req.user = user; // Attach the user to the request object
-    next(); // Pass control to the next handler
-  });
-};
 
 // Login Route
 app.post("/login", (req, res) => {
