@@ -1066,7 +1066,7 @@
       "password": "soan2025",
       "role": "teacher",
       "firstLogin": false,
-      "resetToken": null,
+      "resetToken": null
     }
   ],
   "admin": [
@@ -1077,7 +1077,7 @@
       "password": "admi2025",
       "role": "admin",
       "firstLogin": false,
-      "resetToken": null,
+      "resetToken": null
     }
   ]
 }
