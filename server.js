@@ -176,6 +176,30 @@ app.post("/login", (req, res) => {
     expiresIn: "2h",
   });
 
+  // ✅ Forgot Password Route (Change Teacher/Admin/Student Password)
+app.post("/forgot-password", (req, res) => {
+  const { email, newPassword } = req.body;
+  let userFound = false;
+
+  for (const group of ["students", "teachers", "admin"]) {
+    const userGroup = users[group];
+    const user = userGroup.find(u => u.email === email);
+    if (user) {
+      user.password = newPassword;
+      userFound = true;
+      break;
+    }
+  }
+
+  if (!userFound) {
+    return res.status(404).json({ success: false, message: "User not found." });
+  }
+
+  fs.writeFileSync("./database/users.json", JSON.stringify(users, null, 2));
+  res.json({ success: true, message: "Password updated successfully." });
+});
+
+
   // Ensure that the user has a level for students
   if (!user.level && user.role === "student") {
     return res.status(400).json({ success: false, message: "User has no level assigned." });
