@@ -317,25 +317,26 @@ app.post("/update-gallery-photo/:id", authenticateToken, (req, res) => {
   }
 
   const { id } = req.params;
-  const { galleryUrl } = req.body;
+const { url } = req.body;  // ✅ Changed from galleryUrl to url
 
-  if (!galleryUrl || isNaN(id) || id < 1 || id > 4) {
-    return res.status(400).json({ message: "Invalid request. ID must be 1–4 and a valid URL must be provided." });
-  }
+if (!url || isNaN(id) || id < 1 || id > 4) {
+  return res.status(400).json({ message: "Invalid request. ID must be 1–4 and a valid URL must be provided." });
+}
 
-  try {
-    const imageData = readJsonFile("./database/images.json");
-    imageData.gallery = imageData.gallery || [];
+try {
+  const imageData = readJsonFile("./database/images.json");
+  imageData.gallery = imageData.gallery || [];
 
-    // Adjust index (0-based)
-    imageData.gallery[id - 1] = galleryUrl;
+  // Adjust index (0-based)
+  imageData.gallery[id - 1] = url;
 
-    fs.writeFileSync("./database/images.json", JSON.stringify(imageData, null, 2));
-    res.json({ success: true, message: `Gallery photo ${id} updated successfully.` });
-  } catch (error) {
-    console.error("Error updating gallery photo:", error);
-    res.status(500).json({ success: false, message: "Failed to update gallery photo." });
-  }
+  fs.writeFileSync("./database/images.json", JSON.stringify(imageData, null, 2));
+  res.json({ success: true, message: `Gallery photo ${id} updated successfully.` });
+} catch (error) {
+  console.error("Error updating gallery photo:", error);
+  res.status(500).json({ success: false, message: "Failed to update gallery photo." });
+}
+
 });
 
 // 🔄 Route to Add or Update Users (Admin Only)
