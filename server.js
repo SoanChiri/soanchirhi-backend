@@ -312,32 +312,28 @@ app.post("/update-team-photo", authenticateToken, (req, res) => {
 });
 // 🔄 Route to Update Gallery Photos (Admin Only)
 app.post("/update-gallery-photo/:id", authenticateToken, (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ message: "Access denied. Only admins can update gallery photos." });
-  }
+  if (req.user.role !== 'admin') return res.status(403).json({ message: "Only admins can update gallery photos." });
 
   const { id } = req.params;
-const { url } = req.body;  // ✅ Changed from galleryUrl to url
+  const { galleryUrl } = req.body;
 
-if (!url || isNaN(id) || id < 1 || id > 4) {
-  return res.status(400).json({ message: "Invalid request. ID must be 1–4 and a valid URL must be provided." });
-}
+  if (!galleryUrl || isNaN(id) || id < 1 || id > 4) {
+    return res.status(400).json({ message: "Invalid request. ID must be 1–4 and a valid URL must be provided." });
+  }
 
-try {
-  const imageData = readJsonFile("./database/images.json");
-  imageData.gallery = imageData.gallery || [];
+  try {
+    const imageData = readJsonFile("./database/images.json");
+    imageData.gallery = imageData.gallery || [];
+    imageData.gallery[id - 1] = galleryUrl;
 
-  // Adjust index (0-based)
-  imageData.gallery[id - 1] = url;
-
-  fs.writeFileSync("./database/images.json", JSON.stringify(imageData, null, 2));
-  res.json({ success: true, message: `Gallery photo ${id} updated successfully.` });
-} catch (error) {
-  console.error("Error updating gallery photo:", error);
-  res.status(500).json({ success: false, message: "Failed to update gallery photo." });
-}
-
+    fs.writeFileSync("./database/images.json", JSON.stringify(imageData, null, 2));
+    res.json({ success: true, message: `Gallery photo ${id} updated successfully.` });
+  } catch (error) {
+    console.error("Error updating gallery photo:", error);
+    res.status(500).json({ success: false, message: "Failed to update gallery photo." });
+  }
 });
+
 
 // 🔄 Route to Add or Update Users (Admin Only)
 app.post("/manage-users", authenticateToken, (req, res) => {
