@@ -184,6 +184,21 @@ app.post("/login", (req, res) => {
   res.json({ success: true, token, role, level: user.level || null });
 });
 
+// ✅ Route for Teacher Resources Only (matches frontend expectation)
+app.get("/resources/teacher", authenticateToken, (req, res) => {
+  if (req.user.role !== "teacher" && req.user.role !== "admin") {
+    return res.status(403).json({ message: "Access denied. Only teachers and admins can access this." });
+  }
+
+  const teacherResource = resources.teachers;
+
+  if (Array.isArray(teacherResource) && teacherResource.length > 0) {
+    res.json(teacherResource);
+  } else {
+    res.status(404).json({ message: "Teacher resources not found." });
+  }
+});
+
 // ✅ Resources by level (for students)
 app.get("/resources/:level", authenticateToken, (req, res) => {
   const level = req.params.level.toLowerCase();
@@ -205,20 +220,7 @@ app.get("/all-resources", authenticateToken, (req, res) => {
   res.json(resources);
 });
 
-// ✅ Route for Teacher Resources Only (matches frontend expectation)
-app.get("/resources/teacher", authenticateToken, (req, res) => {
-  if (req.user.role !== "teacher" && req.user.role !== "admin") {
-    return res.status(403).json({ message: "Access denied. Only teachers and admins can access this." });
-  }
 
-  const teacherResource = resources.teachers;
-
-  if (Array.isArray(teacherResource) && teacherResource.length > 0) {
-    res.json(teacherResource);
-  } else {
-    res.status(404).json({ message: "Teacher resources not found." });
-  }
-});
 
 
 // 🔄 Route to Update Class Info (Admin Only)
