@@ -197,6 +197,7 @@ app.get("/resources/:level", authenticateToken, (req, res) => {
 
 // ✅ All resources (for teachers and admins)
 app.get("/all-resources", authenticateToken, (req, res) => {
+  console.log("🔍 Teacher resource request from:", req.user.email, "Role:", req.user.role);
   if (req.user.role !== "teacher" && req.user.role !== "admin") {
     return res.status(403).json({ message: "Access denied. Only teachers and admins can access all resources." });
   }
