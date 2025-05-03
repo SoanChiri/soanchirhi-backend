@@ -142,18 +142,19 @@ app.post("/update-gallery-photo/:id", authenticateToken, (req, res) => {
   }
 
   const id = parseInt(req.params.id, 10);
-  const { url } = req.body;
+  const { galleryUrl } = req.body;
 
-  if (!url || isNaN(id) || id < 1 || id > 4) {
+  if (!galleryUrl || isNaN(id) || id < 1 || id > 4) {
     return res.status(400).json({ message: "Invalid gallery index or URL." });
   }
 
   images.gallery = images.gallery || [];
-  images.gallery[id - 1] = url;
+  images.gallery[id - 1] = galleryUrl;
 
   fs.writeFileSync("./database/images.json", JSON.stringify(images, null, 2));
   res.json({ success: true, message: `Gallery photo ${id} updated.` });
 });
+
 
 // 🔄 Admin-Only Route to Update Class Map
 app.post("/update-class-map", authenticateToken, (req, res) => {
