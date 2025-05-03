@@ -80,28 +80,6 @@ app.get("/team-info", (req, res) => {
   res.json(team);
 });
 
-app.post("/update-team-info", authenticateToken, (req, res) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ message: "Access denied. Only admins can update team info." });
-  }
-  const { description, managementTeam, teachingTeam, teamPhoto } = req.body;
-  if (!description || !Array.isArray(managementTeam) || !Array.isArray(teachingTeam) || !teamPhoto) {
-    return res.status(400).json({ message: "Missing or invalid team info fields." });
-  }
-  try {
-    const updatedTeam = { description, managementTeam, teachingTeam, teamPhoto };
-    fs.writeFileSync("./database/team.json", JSON.stringify(updatedTeam, null, 2));
-    team = updatedTeam;
-    res.json({ success: true, message: "Team info updated successfully." });
-  } catch (error) {
-    console.error("Error updating team info:", error);
-    res.status(500).json({ success: false, message: "Failed to update team info." });
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
-});
 
 // ✅ Load Images JSON (gallery, team, map)
 let images = readJsonFile("./database/images.json");
@@ -162,18 +140,21 @@ app.post("/update-class-map", authenticateToken, (req, res) => {
     return res.status(403).json({ message: "Only admins can update class map." });
   }
 
-  const { url } = req.body;
-  if (!url) return res.status(400).json({ message: "Map URL required." });
+  const { map } = req.body;  // Match frontend: `map` field
+  if (!map) {
+    return res.status(400).json({ message: "Class map URL is required." });
+  }
 
-  images.classMap = [url];
+  images.classMap = [map];  // Store as array
   fs.writeFileSync("./database/images.json", JSON.stringify(images, null, 2));
-  res.json({ success: true, message: "Class location map updated." });
+  res.json({ success: true, message: "Class map updated successfully." });
 });
 
 // ✅ Login Route
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
+  // Look for the user in all roles
   const user =
     users.students.find(u => u.email === email && u.password === password) ||
     users.teachers.find(u => u.email === email && u.password === password) ||
@@ -184,11 +165,23 @@ app.post("/login", (req, res) => {
   }
 
   const role = user.role || "student";
-  const token = jwt.sign({ email: user.email, role, level: user.level || null }, SECRET_KEY, {
-    expiresIn: "2h",
-  });
 
-  // ✅ Forgot Password Route (Change Teacher/Admin/Student Password)
+  // Optional: check for required fields for student
+  if (role === "student" && !user.level) {
+    return res.status(400).json({ success: false, message: "Student account missing level assignment." });
+  }
+
+  // Create JWT token
+  const token = jwt.sign(
+    { email: user.email, role, level: user.level || null },
+    SECRET_KEY,
+    { expiresIn: "2h" }
+  );
+
+  res.json({ success: true, token, role, level: user.level || null });
+});
+
+// ✅ Forgot Password Route (Change Teacher/Admin/Student Password)
 app.post("/forgot-password", (req, res) => {
   const { email, newPassword } = req.body;
   let userFound = false;
@@ -209,15 +202,6 @@ app.post("/forgot-password", (req, res) => {
 
   fs.writeFileSync("./database/users.json", JSON.stringify(users, null, 2));
   res.json({ success: true, message: "Password updated successfully." });
-});
-
-
-  // Ensure that the user has a level for students
-  if (!user.level && user.role === "student") {
-    return res.status(400).json({ success: false, message: "User has no level assigned." });
-  }
-
-  res.json({ success: true, token, role, level: user.level || null });
 });
 
 // ✅ Route for Teacher Resources Only (matches frontend expectation)
@@ -256,10 +240,6 @@ app.get("/all-resources", authenticateToken, (req, res) => {
   res.json(resources);
 });
 
-
-
-
-// 🔄 Route to Update Class Info (Admin Only)
 app.post("/update-classes", authenticateToken, (req, res) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ message: "Access denied. Only admins can update class info." });
@@ -279,27 +259,34 @@ app.post("/update-classes", authenticateToken, (req, res) => {
     res.status(500).json({ success: false, message: "Failed to update class info." });
   }
 });
-// 🔄 Route to Update Team Info (Admin Only)
+
 app.post("/update-team-info", authenticateToken, (req, res) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ message: "Access denied. Only admins can update team info." });
   }
 
-  const { managementTeam, teachingTeam } = req.body;
+  const { description, managementTeam, teachingTeam } = req.body;
 
-  if (!Array.isArray(managementTeam) || !Array.isArray(teachingTeam)) {
-    return res.status(400).json({ message: "Both managementTeam and teachingTeam must be arrays." });
+  if (!description || !Array.isArray(managementTeam) || !Array.isArray(teachingTeam)) {
+    return res.status(400).json({ message: "Missing or invalid team info fields." });
   }
 
   try {
-    const newTeamData = { managementTeam, teachingTeam };
-    fs.writeFileSync("./database/team.json", JSON.stringify(newTeamData, null, 2));
+    const updatedTeam = {
+      description,
+      managementTeam,
+      teachingTeam
+    };
+
+    fs.writeFileSync("./database/team.json", JSON.stringify(updatedTeam, null, 2));
+    team = updatedTeam;
     res.json({ success: true, message: "Team info updated successfully." });
   } catch (error) {
     console.error("Error updating team info:", error);
     res.status(500).json({ success: false, message: "Failed to update team info." });
   }
 });
+
 // 🔄 Route to Update Team Photo (Admin Only)
 app.post("/update-team-photo", authenticateToken, (req, res) => {
   if (req.user.role !== 'admin') {
@@ -322,20 +309,31 @@ app.post("/update-team-photo", authenticateToken, (req, res) => {
     res.status(500).json({ success: false, message: "Failed to update team photo." });
   }
 });
-// 🔄 Route to Update Gallery Photos (Admin Only)
 app.post("/update-gallery-photo/:id", authenticateToken, (req, res) => {
-  if (req.user.role !== 'admin') return res.status(403).json({ message: "Only admins can update gallery photos." });
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: "Only admins can update gallery photos." });
+  }
 
-  const { id } = req.params;
+  const id = parseInt(req.params.id, 10);
   const { galleryUrl } = req.body;
 
-  if (!galleryUrl || isNaN(id) || id < 1 || id > 4) {
-    return res.status(400).json({ message: "Invalid request. ID must be 1–4 and a valid URL must be provided." });
+  // Validate ID and URL
+  const isValidUrl = /^https:\/\/(?:drive\.google\.com\/.+|.+\.(?:jpg|jpeg|png|gif|webp))$/i.test(galleryUrl);
+  if (!galleryUrl || isNaN(id) || id < 1 || !isValidUrl) {
+    return res.status(400).json({
+      message: "Invalid request. ID must be 1+ and URL must be a valid Google Drive or image link."
+    });
   }
 
   try {
     const imageData = readJsonFile("./database/images.json");
     imageData.gallery = imageData.gallery || [];
+
+    // Extend gallery array if necessary
+    while (imageData.gallery.length < id) {
+      imageData.gallery.push(""); // fill with empty strings if index doesn't exist
+    }
+
     imageData.gallery[id - 1] = galleryUrl;
 
     fs.writeFileSync("./database/images.json", JSON.stringify(imageData, null, 2));
@@ -345,6 +343,7 @@ app.post("/update-gallery-photo/:id", authenticateToken, (req, res) => {
     res.status(500).json({ success: false, message: "Failed to update gallery photo." });
   }
 });
+
 
 
 // 🔄 Route to Add or Update Users (Admin Only)
