@@ -8,7 +8,6 @@ const app = express();
 const PORT = 3000;
 const SECRET_KEY = "soanchirhi_secret_key";
 
-// CORS configuration
 const corsOptions = {
   origin: 'https://soanchiri.org',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -19,24 +18,20 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-// ✅ JWT Token Verification Middleware
 const authenticateToken = (req, res, next) => {
-  const token = req.headers['authorization']?.split(' ')[1]; // Format: Bearer <token>
+  const token = req.headers['authorization']?.split(' ')[1];
   if (!token) {
     return res.status(401).json({ message: "Access denied. No token provided." });
   }
-
   jwt.verify(token, SECRET_KEY, (err, user) => {
     if (err) {
       return res.status(403).json({ message: "Invalid token." });
     }
-    req.user = user; // Attach user to request object
+    req.user = user;
     next();
   });
 };
 
-
-// Load data with error handling for file reads
 const readJsonFile = (filePath) => {
   try {
     return JSON.parse(fs.readFileSync(filePath, "utf-8"));
@@ -50,20 +45,11 @@ let users = readJsonFile("./database/users.json");
 let resources = readJsonFile("./database/resources.json");
 let classes = readJsonFile("./database/classes.json");
 let admission = readJsonFile("./database/admission.json");
+let images = readJsonFile("./database/images.json");
+let team = readJsonFile("./database/team.json");
 
-// ✅ Load Admission Link from JSON
-const getAdmissionLink = () => {
-  try {
-    return admission.admissionLink || null;
-  } catch (err) {
-    console.error("Error loading admission link:", err);
-    return null;
-  }
-};
-
-// 🔹 Route to Get Admission Link
 app.get("/admission-link", (req, res) => {
-  const link = getAdmissionLink();
+  const link = admission.admissionLink;
   if (link) {
     res.json({ admissionLink: link });
   } else {
@@ -71,27 +57,52 @@ app.get("/admission-link", (req, res) => {
   }
 });
 
-// 🔄 Route to Update Admission Link (Admin Only)
 app.post("/update-admission-link", authenticateToken, (req, res) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ message: "Access denied. Only admins can update the admission link." });
   }
-
   const { admissionLink } = req.body;
   if (!admissionLink) {
     return res.status(400).json({ message: "Admission link is required." });
   }
-
   try {
     const newAdmission = { admissionLink };
     fs.writeFileSync('./database/admission.json', JSON.stringify(newAdmission, null, 2));
-    admission = newAdmission; // Update in-memory
+    admission = newAdmission;
     res.json({ success: true, message: "Admission link updated successfully." });
   } catch (error) {
     console.error("Error updating admission link:", error);
     res.status(500).json({ success: false, message: "Failed to update admission link." });
   }
 });
+
+app.get("/team-info", (req, res) => {
+  res.json(team);
+});
+
+app.post("/update-team-info", authenticateToken, (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: "Access denied. Only admins can update team info." });
+  }
+  const { description, managementTeam, teachingTeam, teamPhoto } = req.body;
+  if (!description || !Array.isArray(managementTeam) || !Array.isArray(teachingTeam) || !teamPhoto) {
+    return res.status(400).json({ message: "Missing or invalid team info fields." });
+  }
+  try {
+    const updatedTeam = { description, managementTeam, teachingTeam, teamPhoto };
+    fs.writeFileSync("./database/team.json", JSON.stringify(updatedTeam, null, 2));
+    team = updatedTeam;
+    res.json({ success: true, message: "Team info updated successfully." });
+  } catch (error) {
+    console.error("Error updating team info:", error);
+    res.status(500).json({ success: false, message: "Failed to update team info." });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`✅ Server running at http://localhost:${PORT}`);
+});
+
 // ✅ Load Images JSON (gallery, team, map)
 let images = readJsonFile("./database/images.json");
 
