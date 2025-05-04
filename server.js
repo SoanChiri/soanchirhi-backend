@@ -406,6 +406,23 @@ app.post("/manage-users", authenticateToken, (req, res) => {
   }
 });
 
+// 🔄 Admin-Only Route to Update Resources
+app.post("/update-resources", authenticateToken, (req, res) => {
+  if (req.user.role !== "admin") {
+    return res.status(403).json({ message: "Access denied. Only admins can update resources." });
+  }
+
+  try {
+    resources = req.body;
+    fs.writeFileSync("./database/resources.json", JSON.stringify(resources, null, 2));
+    res.json({ success: true, message: "Resources updated successfully." });
+  } catch (error) {
+    console.error("Error updating resources:", error);
+    res.status(500).json({ success: false, message: "Failed to update resources." });
+  }
+});
+
+
 
 
 // Start Server
