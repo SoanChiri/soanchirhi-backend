@@ -345,7 +345,6 @@ app.post("/update-gallery-photo/:id", authenticateToken, (req, res) => {
 });
 
 
-
 // 🔄 Route to Add or Update Users (Admin Only)
 app.post("/manage-users", authenticateToken, (req, res) => {
   if (req.user.role !== 'admin') {
@@ -354,10 +353,18 @@ app.post("/manage-users", authenticateToken, (req, res) => {
 
   const { first_name, last_name, preferred_name, email, password, role, level } = req.body;
 
+  // Validate required fields
   if (!first_name || !last_name || !email || !password || !role) {
     return res.status(400).json({ message: "Missing required fields." });
   }
 
+  // Validate role
+  const validRoles = ["student", "teacher", "admin"];
+  if (!validRoles.includes(role)) {
+    return res.status(400).json({ message: "Invalid role. Must be student, teacher, or admin." });
+  }
+
+  // Create user object
   const userObject = {
     id: Date.now(),
     first_name,
@@ -366,28 +373,35 @@ app.post("/manage-users", authenticateToken, (req, res) => {
     email,
     password,
     role,
-    level: role === "student" ? level || "" : "Level 0",
+    level: role === "student" ? level || "" : undefined,
     firstLogin: false,
     resetToken: null
   };
 
   try {
-    let targetGroup = users[`${role}s`];
-    if (!targetGroup) return res.status(400).json({ message: "Invalid role." });
+    const groupKey = role + "s"; // "students", "teachers", "admins"
+    let targetGroup = users[groupKey];
+
+    if (!Array.isArray(targetGroup)) {
+      return res.status(500).json({ message: "User group not found in database." });
+    }
 
     const existingIndex = targetGroup.findIndex(u => u.email === email);
+
     if (existingIndex !== -1) {
-      // update user
+      // Update existing user
       targetGroup[existingIndex] = { ...targetGroup[existingIndex], ...userObject };
     } else {
-      // add user
+      // Add new user
       targetGroup.push(userObject);
     }
 
+    // Write to file
     fs.writeFileSync("./database/users.json", JSON.stringify(users, null, 2));
     res.json({ success: true, message: "User saved successfully." });
+
   } catch (err) {
-    console.error("Error saving user:", err);
+    console.error("❌ Error saving user:", err);
     res.status(500).json({ success: false, message: "Failed to save user." });
   }
 });
