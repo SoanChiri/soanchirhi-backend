@@ -1,12 +1,14 @@
 {
   "gallery": [
-    "https://drive.google.com/uc?export=view&id=IMAGE_ID_1",
-    "https://drive.google.com/uc?export=view&id=IMAGE_ID_2"
+    "https://drive.google.com/uc?id=1QAW3F-adCDFqkAbLtwaD07HCf4U6EITV",
+    "https://drive.google.com/uc?id=1Jd3gpxW2qcwHVw5JQ-WldpvPXgk6CVz-",
+    "https://drive.google.com/uc?id=1AEhFUF2npkNpNc1Dd5HyVBLJ3YLRIN3i",
+    "https://drive.google.com/uc?id=1w2jJs2-O0uB5sxGos7AJJCHXwbnF_cvp"
   ],
   "teamPhotos": [
-    "https://drive.google.com/uc?export=view&id=TEAM_IMAGE_ID"
+    "https://drive.google.com/uc?id=1IrmwTXxcz1B9UY6w9QlsWq9gUqMmpv2W"
   ],
   "classMap": [
-    "https://drive.google.com/uc?export=view&id=MAP_IMAGE_ID"
+    "https://drive.google.com/uc?id=1m1JzxLzbFGjM1BKOdqvtgk7ZrFzMmp0t"
   ]
 }
