@@ -82,7 +82,6 @@ app.get("/team-info", (req, res) => {
 
 
 // ✅ Load Images JSON (gallery, team, map)
-let images = readJsonFile("./database/images.json");
 
 // 🔹 Route to Get Team Photo
 app.get("/team-photo", (req, res) => {
